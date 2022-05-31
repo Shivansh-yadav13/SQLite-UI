@@ -6,15 +6,45 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+var DB *sql.DB
+
 func ConnectDB() {
-	database, err := sql.Open("sqlite3", "./data.db")
+	var err error
+	DB, err = sql.Open("sqlite3", "./data.db")
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
+	}
+}
+
+func GetTables() []string {
+	rows, err := DB.Query("SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name")
+	if err != nil {
+		panic(err)
 	}
 
-	statement, err := database.Prepare("CREATE TABLE IF NOT EXISTS people (id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT)")
-	if err != nil {
-		fmt.Println(err)
+	defer func() {
+		err = rows.Close()
+		if err != nil {
+			panic(err)
+		}
+	}()
+
+	tableNames := make([]string, 0)
+	for rows.Next() {
+		var tn string
+		if err := rows.Scan(&tn); err != nil {
+			panic(err)
+		}
+		tableNames = append(tableNames, tn)
 	}
-	statement.Exec()
+
+	if err := rows.Err(); err != nil {
+		panic(err)
+	}
+
+	return tableNames
+}
+
+func CreateTable(tableName string) {
+	rows, err := DB.Query(fmt.Sprintf("CREATE TABLE %d(ID INT PRIMARY KEY NOT NULL, )", tableName))
 }

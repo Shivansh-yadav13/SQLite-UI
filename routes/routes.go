@@ -1,13 +1,17 @@
 package routes
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+)
 
-func SetupRoutes(app *fiber.App) {
-	app.Get("/", index)
-}
+func SetRoutes(app *fiber.App) {
 
-func index(c *fiber.Ctx) error {
-	return c.Render("index", fiber.Map{
-		"Title": "SQLite Web",
-	})
+	// template routes
+
+	app.Get("/", Index)
+	//app.Post("/create-table")
+
+	// database ops routes
+
+	app.Get("/get-tables", GetTables)
 }
