@@ -8,15 +8,18 @@ import (
 
 var DB *sql.DB
 
-func ConnectDB() {
+func ConnectDB() error {
 	var err error
 	DB, err = sql.Open("sqlite3", "./data.db")
 	if err != nil {
-		panic(err)
+		return err
 	}
+
+	return nil
 }
 
-func GetTables() []string {
+func GetTables() ([]string, error) {
+	tableNames := make([]string, 0)
 	rows, err := DB.Query("SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name")
 	if err != nil {
 		panic(err)
@@ -29,7 +32,6 @@ func GetTables() []string {
 		}
 	}()
 
-	tableNames := make([]string, 0)
 	for rows.Next() {
 		var tn string
 		if err := rows.Scan(&tn); err != nil {
@@ -42,9 +44,22 @@ func GetTables() []string {
 		panic(err)
 	}
 
-	return tableNames
+	return tableNames, nil
 }
 
-func CreateTable(tableName string) {
-	rows, err := DB.Query(fmt.Sprintf("CREATE TABLE %d(ID INT PRIMARY KEY NOT NULL, )", tableName))
+func CreateTable(tableName string) error {
+	_, err := DB.Exec(fmt.Sprintf("CREATE TABLE %v('id' INTEGER NOT NULL PRIMARY KEY)", tableName))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func DropTable(tableName string) error {
+	_, err := DB.Exec(fmt.Sprintf("DROP TABLE %v", tableName))
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
