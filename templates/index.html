@@ -5,5 +5,23 @@
 </head>
 <body>
     <h1>{{.Title}}</h1>
+    <h1>Tables</h1>
+    <ul>
+        {{range .tables}}
+        <li>
+            <form action="/drop-table" method="post">
+                <label for="tname">{{.}}</label>
+                <input hidden type="text" id="tname" name="table_name" value={{.}}>
+                <button type="submit">Drop table</button>
+            </form>
+        </li>
+        {{end}}
+    </ul>
+    <h1>Create Table</h1>
+    <form action="/create-table" method="post">
+        <label for="table_name">Table Name</label>
+        <input type="text" id="table_name" name="table_name" />
+        <button type="submit">Create</button>
+    </form>
 </body>
 </html>

@@ -4,13 +4,18 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/mattn/go-sqlite3"
+	"os"
 )
 
 var DB *sql.DB
 
 func ConnectDB() error {
 	var err error
-	DB, err = sql.Open("sqlite3", "./data.db")
+	dbName := os.Getenv("SQLITE_NAME")
+	if dbName == "" {
+		dbName = "data"
+	}
+	DB, err = sql.Open("sqlite3", fmt.Sprintf("./sqlite_database/%s.db", dbName))
 	if err != nil {
 		return err
 	}

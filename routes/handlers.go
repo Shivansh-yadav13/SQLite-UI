@@ -1,14 +1,20 @@
 package routes
 
 import (
+	"log"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/shivansh-yadav13/sqlite-web/db"
-	"log"
 )
 
 func Index(c *fiber.Ctx) error {
+	tables, err := db.GetTables()
+	if err != nil {
+		panic(err)
+	}
 	return c.Render("index", fiber.Map{
-		"Title": "SQLite Web",
+		"Title":  "SQLite Web",
+		"tables": tables,
 	})
 }
 
@@ -37,7 +43,7 @@ func CreateTable(c *fiber.Ctx) error {
 		log.Fatalln(err)
 	}
 
-	return c.SendString("Table Created!")
+	return c.Redirect("/", 201)
 }
 
 func DropTable(c *fiber.Ctx) error {
@@ -49,5 +55,5 @@ func DropTable(c *fiber.Ctx) error {
 		log.Fatalln(err)
 	}
 
-	return c.SendStatus(200)
+	return c.Redirect("/", 202)
 }
