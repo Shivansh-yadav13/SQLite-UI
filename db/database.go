@@ -3,20 +3,19 @@ package db
 import (
 	"database/sql"
 	"fmt"
+
 	_ "github.com/mattn/go-sqlite3"
-	"os"
 )
 
 var DB *sql.DB
 
-func ConnectDB() error {
+func ConnectDB(dbUri string) error {
 	var err error
-	dbName := os.Getenv("SQLITE_NAME")
-	if dbName == "" {
-		dbName = "data"
-	}
-	DB, err = sql.Open("sqlite3", fmt.Sprintf("./sqlite_database/%s.db", dbName))
+	DB, err = sql.Open("sqlite3", dbUri)
 	if err != nil {
+		return err
+	}
+	if err = DB.Ping(); err != nil {
 		return err
 	}
 
