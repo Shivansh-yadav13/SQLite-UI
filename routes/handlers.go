@@ -7,6 +7,7 @@ import (
 	"github.com/shivansh-yadav13/sqlite-web/db"
 )
 
+// Index will render the index html template.
 func Index(c *fiber.Ctx) error {
 	tables, err := db.GetTables()
 	if err != nil {
@@ -18,6 +19,7 @@ func Index(c *fiber.Ctx) error {
 	})
 }
 
+// GetTable will call the GetTables from the db package
 func GetTables(c *fiber.Ctx) error {
 	tNames, err := db.GetTables()
 	var tNamesString string
@@ -34,6 +36,11 @@ func GetTables(c *fiber.Ctx) error {
 	return c.SendString(tNamesString)
 }
 
+/*
+	CreateTable takes the table name from the post request
+
+	and calls the CreateTable of the db package.
+*/
 func CreateTable(c *fiber.Ctx) error {
 	table := new(Table)
 	if err := c.BodyParser(table); err != nil {
@@ -46,6 +53,11 @@ func CreateTable(c *fiber.Ctx) error {
 	return c.Redirect("/", 201)
 }
 
+/*
+	DropTable takes the table name from the post request
+
+	and calls the DropTable of the db package.
+*/
 func DropTable(c *fiber.Ctx) error {
 	table := new(Table)
 	if err := c.BodyParser(table); err != nil {

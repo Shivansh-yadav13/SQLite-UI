@@ -4,8 +4,10 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+/*
+	SetRoutes sets all the routes for the fiber app.
+*/
 func SetRoutes(app *fiber.App) {
-
 	// template routes
 
 	app.Get("/", Index)
@@ -15,6 +17,6 @@ func SetRoutes(app *fiber.App) {
 	app.Get("/get-tables", GetTables)
 	app.Post("/create-table", CreateTable)
 	app.Post("/drop-table", DropTable)
-	//app.Post("/add-col", AddCol)
-	//app.Post("add")
+	// app.Post("/add-col", AddCol)
+	// app.Post("add")
 }

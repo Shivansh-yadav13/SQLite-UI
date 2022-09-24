@@ -5,6 +5,10 @@ import (
 	"github.com/gofiber/template/html"
 )
 
+/*
+SetupApp create a new fiber app
+setting up the HTML templates and static files.
+*/
 func SetupApp() *fiber.App {
 	engine := html.New("./templates", ".html")
 	app := fiber.New(fiber.Config{
