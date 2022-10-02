@@ -14,6 +14,6 @@ func SetupApp() *fiber.App {
 	app := fiber.New(fiber.Config{
 		Views: engine,
 	})
-	app.Static("/", "../static")
+	app.Static("/static", "./static")
 	return app
 }
