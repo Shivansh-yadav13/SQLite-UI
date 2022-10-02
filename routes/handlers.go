@@ -62,8 +62,10 @@ func DropTable(c *fiber.Ctx) error {
 	table := new(Table)
 	if err := c.BodyParser(table); err != nil {
 		log.Fatalln(err)
-	} else if err := db.DropTable(table.Name); err != nil {
+	}
+	if err := db.DropTable(table.Name); err != nil {
 		log.Fatalln(err)
 	}
+	
 	return c.RedirectBack("/")
 }
