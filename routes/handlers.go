@@ -50,7 +50,7 @@ func CreateTable(c *fiber.Ctx) error {
 		log.Fatalln(err)
 	}
 
-	return c.Redirect("/", 201)
+	return c.RedirectBack("/")
 }
 
 /*
@@ -66,6 +66,6 @@ func DropTable(c *fiber.Ctx) error {
 	if err := db.DropTable(table.Name); err != nil {
 		log.Fatalln(err)
 	}
-
-	return c.Redirect("/", 202)
+	
+	return c.RedirectBack("/")
 }
