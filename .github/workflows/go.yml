@@ -1,5 +1,4 @@
 
-
 name: Go CI
 env:
   WD: "./db"
@@ -30,3 +29,5 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+      run: go test -v ./...
+
