@@ -1,4 +1,4 @@
-name: Docker CI
+name: Docker Registry
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
     steps:
       -
         name: Set up QEMU
@@ -23,7 +24,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v3.1.1
         with:
           push: true
           tags: shivanshyadav/sqlite_ui
+          github-token: ${{ github.token }}
