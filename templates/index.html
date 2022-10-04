@@ -1,27 +1,37 @@
 <!DOCTYPE html>
+
 <head>
-  <link rel="stylesheet" href="/static/css/styles.css">
-  <title>{{.Title}}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <title>{{.Title}}</title>
 </head>
+
 <body>
-    <h1>{{.Title}}</h1>
-    <h1>Tables</h1>
-    <ul>
-        {{range .tables}}
-        <li>
-            <form action="/drop-table" method="post">
-                <label for="tname">{{.}}</label>
-                <input hidden type="text" id="tname" name="table_name" value={{.}}>
-                <button type="submit">Drop table</button>
-            </form>
-        </li>
-        {{end}}
-    </ul>
-    <h1>Create Table</h1>
-    <form action="/create-table" method="post">
-        <label for="table_name">Table Name</label>
-        <input type="text" id="table_name" name="table_name" />
-        <button type="submit">Create</button>
-    </form>
+    <div class="main">
+        <h1 class="title">{{.Title}}</h1>
+        <h2 class="heading">Tables</h2>
+        <ul class="tables">
+            {{range .tables}}
+            <li>
+                <form action="/drop-table" method="post">
+                    <label class="table-name" for="tname">{{.}}</label>
+                    <input hidden type="text" id="tname" name="table_name" value={{.}}>
+                    <div class="table-btns">
+                        <button type="submit" class="table-btn">Drop table</button>
+                        <button class="table-btn">
+                            <a href="/{{.}}">View table</a>
+                        </button>
+                    </div>
+                </form>
+            </li>
+            {{end}}
+        </ul>
+        <h2 class="heading">Create Table</h2>
+        <form action="/create-table" method="post">
+            <input type="text" id="table_name" name="table_name" placeholder="table-name" />
+            <button type="submit">Create</button>
+        </form>
+    </div>
 </body>
+
 </html>

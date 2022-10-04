@@ -14,7 +14,7 @@ func Index(c *fiber.Ctx) error {
 		panic(err)
 	}
 	return c.Render("index", fiber.Map{
-		"Title":  "SQLite Web",
+		"Title":  "SQLite UI",
 		"tables": tables,
 	})
 }
@@ -66,6 +66,6 @@ func DropTable(c *fiber.Ctx) error {
 	if err := db.DropTable(table.Name); err != nil {
 		log.Fatalln(err)
 	}
-	
+
 	return c.RedirectBack("/")
 }
