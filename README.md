@@ -42,3 +42,7 @@ go run main.go
 
 **5.)** Now you can visit `localhost:3000` and you will be able to see:
 ![Screenshot from 2022-09-22 12-21-21](https://user-images.githubusercontent.com/87603425/191677999-c3a95f63-8f4b-4b53-8a04-f50fc4323d9d.png)
+
+## **👥 Contributors**
+
+[![Contributors](https://contrib.rocks/image?repo=shivansh-yadav13/sqlite-ui)](https://github.com/shivansh-yadav13/sqlite-ui/graphs/contributors)
