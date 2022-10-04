@@ -65,7 +65,7 @@ func GetTables() ([]string, error) {
 	@param tableName - name of the table
 */
 func CreateTable(tableName string) error {
-	_, err := DB.Exec(fmt.Sprintf("CREATE TABLE %v('id' INTEGER NOT NULL PRIMARY KEY)", tableName))
+	_, err := DB.Exec(fmt.Sprintf("CREATE TABLE '%v'('id' INTEGER NOT NULL PRIMARY KEY)", tableName))
 	if err != nil {
 		return err
 	}
@@ -78,7 +78,7 @@ func CreateTable(tableName string) error {
 	@param tableName - name of the table
 */
 func DropTable(tableName string) error {
-	_, err := DB.Exec(fmt.Sprintf("DROP TABLE %v", tableName))
+	_, err := DB.Exec(fmt.Sprintf("DROP TABLE '%v'", tableName))
 	if err != nil {
 		return err
 	}
