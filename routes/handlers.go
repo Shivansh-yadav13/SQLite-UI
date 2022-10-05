@@ -19,6 +19,18 @@ func Index(c *fiber.Ctx) error {
 	})
 }
 
+// Table will render the table_view html template.
+func Table(c *fiber.Ctx) error {
+	query, err := db.GetSQLQuery(c.Params("table"))
+	if err != nil {
+		return err
+	}
+	return c.Render("table_view", fiber.Map{
+		"table_name": c.Params("table"),
+		"sql_query":  query,
+	})
+}
+
 // GetTable will call the GetTables from the db package
 func GetTables(c *fiber.Ctx) error {
 	tNames, err := db.GetTables()
@@ -42,7 +54,7 @@ func GetTables(c *fiber.Ctx) error {
 	and calls the CreateTable of the db package.
 */
 func CreateTable(c *fiber.Ctx) error {
-	table := new(Table)
+	table := new(TableStruct)
 	if err := c.BodyParser(table); err != nil {
 		return err
 	}
@@ -59,7 +71,7 @@ func CreateTable(c *fiber.Ctx) error {
 	and calls the DropTable of the db package.
 */
 func DropTable(c *fiber.Ctx) error {
-	table := new(Table)
+	table := new(TableStruct)
 	if err := c.BodyParser(table); err != nil {
 		log.Fatalln(err)
 	}
