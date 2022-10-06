@@ -86,4 +86,6 @@ func DropTable(tableName string) error {
 	return nil
 }
 
-func GetSQLQuery(tableName string) (string, error) {}
+func GetSQLQuery(tableName string) (string, error) {
+	return "", nil
+}
