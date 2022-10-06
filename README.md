@@ -1,3 +1,5 @@
+![SQLite-UI](https://socialify.git.ci/shivansh-yadav13/sqlite-ui/image?description=1&font=Raleway&forks=1&issues=1&logo=https%3A%2F%2Fdwglogo.com%2Fwp-content%2Fuploads%2F2018%2F03%2FSQLite_Vector_logo-1024x705.png&pattern=Plus&pulls=1&stargazers=1&theme=Light)
+
 # 🌐 SQLite UI
 **SQLite UI** is a web user interface for SQLite database built with Golang.
 It is built in Golang using the **Fiber** package.
