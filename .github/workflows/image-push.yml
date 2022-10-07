@@ -1,0 +1,19 @@
+name: GitHub Container Registry
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build and publish to GHCR
+        uses: pmorelli92/github-container-registry-build-push@2.0.0
+        with:
+          github-push-secret: ${{ secrets.PACKAGES_GITHUB_TOKEN }}
+          docker-image-name: sqlite-ui

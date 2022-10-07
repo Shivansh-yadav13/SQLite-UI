@@ -11,6 +11,7 @@ func SetRoutes(app *fiber.App) {
 	// template routes
 
 	app.Get("/", Index)
+	app.Get("/:table", Table)
 
 	// database ops routes
 

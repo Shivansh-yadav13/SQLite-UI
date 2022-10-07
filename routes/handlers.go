@@ -14,8 +14,20 @@ func Index(c *fiber.Ctx) error {
 		panic(err)
 	}
 	return c.Render("index", fiber.Map{
-		"Title":  "SQLite Web",
+		"Title":  "SQLite UI",
 		"tables": tables,
+	})
+}
+
+// Table will render the table_view html template.
+func Table(c *fiber.Ctx) error {
+	query, err := db.GetSQLQuery(c.Params("table"))
+	if err != nil {
+		return err
+	}
+	return c.Render("table_view", fiber.Map{
+		"table_name": c.Params("table"),
+		"sql_query":  query,
 	})
 }
 
@@ -42,7 +54,7 @@ func GetTables(c *fiber.Ctx) error {
 	and calls the CreateTable of the db package.
 */
 func CreateTable(c *fiber.Ctx) error {
-	table := new(Table)
+	table := new(TableStruct)
 	if err := c.BodyParser(table); err != nil {
 		return err
 	}
@@ -59,13 +71,13 @@ func CreateTable(c *fiber.Ctx) error {
 	and calls the DropTable of the db package.
 */
 func DropTable(c *fiber.Ctx) error {
-	table := new(Table)
+	table := new(TableStruct)
 	if err := c.BodyParser(table); err != nil {
 		log.Fatalln(err)
 	}
 	if err := db.DropTable(table.Name); err != nil {
 		log.Fatalln(err)
 	}
-	
+
 	return c.RedirectBack("/")
 }
