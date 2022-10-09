@@ -81,3 +81,21 @@ func DropTable(c *fiber.Ctx) error {
 
 	return c.RedirectBack("/")
 }
+
+/*
+	AddColumn takes the table name from the post request
+
+	and calls the AddColumn of the db package.
+*/
+func AddColumn(c *fiber.Ctx) error {
+	table := new(TableStruct)
+	column := new(ColumnStruct)
+	if err := c.BodyParser(table); err != nil {
+		return err
+	}
+	if err := db.AddColumn(table.Name, column.Name, column.Type); err != nil {
+		log.Fatalln(err)
+	}
+
+	return c.RedirectBack("/")
+}
