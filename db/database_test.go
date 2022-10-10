@@ -51,3 +51,20 @@ func TestDropTable(t *testing.T) {
 		}
 	}
 }
+
+func TestGetSQLQuery(t *testing.T) {
+	if err := ConnectDB("../sqlite_database/data.db"); err != nil {
+		t.Error(err)
+	}
+	newTableName := "tbl_schema_test"
+	if err := CreateTable(newTableName); err != nil {
+		t.Fatal(err)
+	}
+	sql, err := GetSQLQuery(newTableName)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if sql == "" {
+		t.Errorf("Table schema should not be empty")
+	}
+}
