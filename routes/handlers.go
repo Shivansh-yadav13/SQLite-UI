@@ -2,6 +2,7 @@ package routes
 
 import (
 	"log"
+	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/shivansh-yadav13/sqlite-web/db"
