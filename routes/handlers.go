@@ -93,6 +93,9 @@ func AddColumn(c *fiber.Ctx) error {
 	if err := c.BodyParser(&table); err != nil {
 		return err
 	}
+	if err := c.BodyParser(&column); err != nil {
+		return err
+	}
 	if err := db.AddColumn(table.Name, column.Name, column.Type); err != nil {
 		log.Fatalln(err)
 	}
