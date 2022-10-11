@@ -89,3 +89,18 @@ func DropTable(tableName string) error {
 func GetSQLQuery(tableName string) (string, error) {
 	return "", nil
 }
+
+/*
+	AddColumn adds a column to a specified table.
+
+	@param tableName - name of the table
+	@param columnName - name of column to be added
+	@param dataType - field type of the new column
+*/
+func AddColumn(tableName string, columnName string, dataType string) error {
+	_, err := DB.Exec(fmt.Sprintf("ALTER TABLE '%s' ADD '%s' '%s'", tableName, columnName, dataType))
+	if err != nil {
+		return err
+	}
+	return nil
+}
