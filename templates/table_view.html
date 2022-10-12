@@ -8,7 +8,9 @@
   <title>{{.table_name}}</title>
 </head>
 <body>
-  {{.table_name}}
+  <h3>{{.table_name}}</h3>
+  <p>{{.sql_query}}</p>
+
   <form action="/add-column" method="post">
     <label for="table_name">&#43; Add Column</label>
     <input type="hidden" id="table_name" name="table_name" placeholder="table-name" value="{{.table_name}}"/>

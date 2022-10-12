@@ -87,7 +87,20 @@ func DropTable(tableName string) error {
 }
 
 func GetSQLQuery(tableName string) (string, error) {
-	return "", nil
+	sql := "SELECT sql FROM sqlite_master where tbl_name=?"
+	params := []interface{}{tableName}
+	stmt, err := DB.Prepare(sql)
+	if err != nil {
+		return "", err
+	}
+	defer stmt.Close()
+
+	var sqltext string
+	err = stmt.QueryRow(params...).Scan(&sqltext)
+	if err != nil {
+		return "", err
+	}
+	return sqltext, nil
 }
 
 /*
