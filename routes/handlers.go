@@ -2,6 +2,7 @@ package routes
 
 import (
 	"log"
+	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/shivansh-yadav13/sqlite-web/db"
@@ -80,4 +81,25 @@ func DropTable(c *fiber.Ctx) error {
 	}
 
 	return c.RedirectBack("/")
+}
+
+/*
+	AddColumn takes the table name from the post request
+
+	and calls the AddColumn of the db package.
+*/
+func AddColumn(c *fiber.Ctx) error {
+	table := TableStruct{}
+	column := ColumnStruct{}
+	if err := c.BodyParser(&table); err != nil {
+		return err
+	}
+	if err := c.BodyParser(&column); err != nil {
+		return err
+	}
+	if err := db.AddColumn(table.Name, column.Name, column.Type); err != nil {
+		log.Fatalln(err)
+	}
+
+	return c.RedirectBack(fmt.Sprintf("/%s", table.Name))
 }
