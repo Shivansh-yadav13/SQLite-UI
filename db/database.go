@@ -3,6 +3,7 @@ package db
 import (
 	"database/sql"
 	"fmt"
+	"strings"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -116,4 +117,38 @@ func AddColumn(tableName string, columnName string, dataType string) error {
 		return err
 	}
 	return nil
+}
+
+func GetData(tableName string, page int, offset int) ([]string, [][]string, error) {
+	sql := fmt.Sprintf("SELECT * FROM %s limit ? offset ?", tableName)
+	params := []interface{}{page, offset}
+	rows, err := DB.Query(sql, params...)
+	if err != nil {
+		return nil, nil, err
+	}
+	defer rows.Close()
+
+	var records [][]string
+	columns, _ := rows.Columns()
+	cols := make([]string, len(columns))
+	colptrs := make([]interface{}, len(columns))
+	for i, _ := range cols {
+		colptrs[i] = &cols[i]
+	}
+	for rows.Next() {
+		err = rows.Scan(colptrs...)
+		if err != nil {
+			fmt.Println(err)
+		}
+		record := []string{}
+		for i, _ := range columns {
+			if len(cols[i]) > 50 {
+				record = append(record, strings.TrimSpace(cols[i][:50]+"..."))
+			} else {
+				record = append(record, strings.TrimSpace(cols[i]))
+			}
+		}
+		records = append(records, record)
+	}
+	return columns, records, nil
 }
