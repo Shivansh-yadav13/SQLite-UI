@@ -6,17 +6,24 @@ on:
   pull_request:
     branches: [ "main" ]
 
-jobs:
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
 
-  build:
+jobs:
+  test-and-build:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v3
-
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
         go-version: 1.18
 
+    - name: Build
+      run: go build -v ./...
+
     - name: Test
       run: mkdir sqlite_database && touch sqlite_database/data.db && cd ./db && go test -v ./...
+
