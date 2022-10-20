@@ -8,9 +8,13 @@ You can read more about it **[here](https://github.com/gofiber/fiber)**.
 Project is right now at it's very intial stage and under developement. Our plan is to make this a **Good Open Source** project, where people can easily start contributing, fix bugs and add more features 🙂.
 ## Distictive features of SQLite
  > Serverless
+ 
  >Compact
+
  > Public Domain
+ 
  >Zero Configuration
+ 
 
 ## **🔧 Usage**
 
