@@ -1,8 +1,9 @@
 package routes
 
 import (
-	"log"
 	"fmt"
+	"log"
+	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/shivansh-yadav13/sqlite-web/db"
@@ -29,6 +30,19 @@ func Table(c *fiber.Ctx) error {
 	return c.Render("table_view", fiber.Map{
 		"table_name": c.Params("table"),
 		"sql_query":  query,
+	})
+}
+
+func TableData(c *fiber.Ctx) error {
+	page, _ := strconv.Atoi(c.Query("page"))
+	if page == 0 {
+		page = 1
+	}
+	cols, rows, _ := db.GetData(c.Params("table"), 10, (page-1)*10)
+	return c.Render("table_data_view", fiber.Map{
+		"table_name": c.Params("table"),
+		"columns":    cols,
+		"rows":       rows,
 	})
 }
 
