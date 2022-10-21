@@ -73,6 +73,9 @@ func CreateTable(c *fiber.Ctx) error {
 	if err := c.BodyParser(table); err != nil {
 		return err
 	}
+	if table.Name == "" {
+		return fmt.Errorf("Table name can't be empty")
+	}
 	if err := db.CreateTable(table.Name); err != nil {
 		log.Fatalln(err)
 	}
