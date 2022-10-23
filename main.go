@@ -18,5 +18,5 @@ func main() {
 	}
 	db.ConnectDB(fmt.Sprintf("./sqlite_database/%s.db", dbName))
 	routes.SetRoutes(app)
-	log.Fatal(app.Listen(":3000"))
+	log.Fatal(app.Listen(":8080"))
 }

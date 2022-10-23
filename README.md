@@ -37,12 +37,18 @@ git clone https://github.com/your-github-username/SQLite-UI.git
 ```
 **3.)** To start the project locally we need to create a sqlite file with name as `data.db`. Navigate to the root of the project and create a folder with the name `sqlite_database` and inside it create a file `data.db`.
 
-**4.)** Now we are ready to start the server, run the following:
+4. Build the TailwindCSS bundle
+
+```bash
+./tailwindcss -i ./static/css/app.css -o ./static/css/build.min.css --minify
+```
+
+**5.)** Now we are ready to start the server, run the following:
 ```bash
 go run main.go
 ```
 
-**5.)** Now you can visit `localhost:3000` and you will be able to see:
+**6.)** Now you can visit `localhost:3000` and you will be able to see:
 ![Screenshot from 2022-09-22 12-21-21](https://user-images.githubusercontent.com/87603425/191677999-c3a95f63-8f4b-4b53-8a04-f50fc4323d9d.png)
 
 ## **👥 Contributors**
