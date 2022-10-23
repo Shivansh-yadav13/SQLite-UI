@@ -6,6 +6,15 @@ It is built in Golang using the **Fiber** package.
 **Fiber** is an [Express](https://github.com/expressjs/express) inspired **web framework**
 You can read more about it **[here](https://github.com/gofiber/fiber)**.
 Project is right now at it's very intial stage and under developement. Our plan is to make this a **Good Open Source** project, where people can easily start contributing, fix bugs and add more features 🙂.
+## Distictive features of SQLite
+ > Serverless
+ 
+ >Compact
+
+ > Public Domain
+ 
+ >Zero Configuration
+ 
 
 ## **🔧 Usage**
 
@@ -43,7 +52,7 @@ go run main.go
 ```
 
 **5.)** Now you can visit `localhost:3000` and you will be able to see:
-![Screenshot from 2022-09-22 12-21-21](https://user-images.githubusercontent.com/87603425/191677999-c3a95f63-8f4b-4b53-8a04-f50fc4323d9d.png)
+![Screenshot from 2022-09-22 12-21-21](https://user-images.githubusercontent.com/98336593/195328073-4f030dda-587a-4b18-85e3-bc759945f666.png)
 
 ## **👥 Contributors**
 
