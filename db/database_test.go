@@ -6,14 +6,16 @@ import (
 	"testing"
 )
 
+var dbName string = "test.db"
+
 func TestConnectDB(t *testing.T) {
-	if err := ConnectDB("../sqlite_database/data.db"); err != nil {
+	if err := ConnectDB(dbName); err != nil {
 		t.Error(err)
 	}
 }
 
 func TestCreateTable(t *testing.T) {
-	if err := ConnectDB("../sqlite_database/data.db"); err != nil {
+	if err := ConnectDB(dbName); err != nil {
 		t.Error(err)
 	}
 	newTableName := "userTable"
@@ -36,7 +38,7 @@ func TestCreateTable(t *testing.T) {
 }
 
 func TestDropTable(t *testing.T) {
-	if err := ConnectDB("../sqlite_database/data.db"); err != nil {
+	if err := ConnectDB(dbName); err != nil {
 		t.Error(err)
 	}
 	dropTableName := "userTable"
@@ -55,7 +57,7 @@ func TestDropTable(t *testing.T) {
 }
 
 func TestGetSQLQuery(t *testing.T) {
-	if err := ConnectDB("../sqlite_database/data.db"); err != nil {
+	if err := ConnectDB(dbName); err != nil {
 		t.Error(err)
 	}
 	newTableName := "tbl_schema_test"
@@ -75,7 +77,7 @@ func TestGetSQLQuery(t *testing.T) {
 	Test suite for AddColumn function
 */
 func TestAddColumnForText(t *testing.T) {
-	if err := ConnectDB("../sqlite_database/data.db"); err != nil {
+	if err := ConnectDB(dbName); err != nil {
 		t.Error(err)
 	}
 	newTableName := "tbl_schema_test"
@@ -101,7 +103,7 @@ func TestAddColumnForText(t *testing.T) {
 }
 
 func TestAddColumnForNull(t *testing.T) {
-	if err := ConnectDB("../sqlite_database/data.db"); err != nil {
+	if err := ConnectDB(dbName); err != nil {
 		t.Error(err)
 	}
 	newTableName := "tbl_schema_test"
@@ -126,7 +128,7 @@ func TestAddColumnForNull(t *testing.T) {
 }
 
 func TestAddColumnForReal(t *testing.T) {
-	if err := ConnectDB("../sqlite_database/data.db"); err != nil {
+	if err := ConnectDB(dbName); err != nil {
 		t.Error(err)
 	}
 	newTableName := "tbl_schema_test"
@@ -151,7 +153,7 @@ func TestAddColumnForReal(t *testing.T) {
 }
 
 func TestAddColumnForBlob(t *testing.T) {
-	if err := ConnectDB("../sqlite_database/data.db"); err != nil {
+	if err := ConnectDB(dbName); err != nil {
 		t.Error(err)
 	}
 	newTableName := "tbl_schema_test"
