@@ -13,6 +13,7 @@ func SetRoutes(app *fiber.App) {
 	app.Get("/", Index)
 	app.Get("/:table/schema", Table)
 	app.Get("/:table/data", TableData)
+	app.Get("/setting", Setting)
 
 	// database ops routes
 
