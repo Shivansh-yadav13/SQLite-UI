@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/shivansh-yadav13/sqlite-web/configs"
 	"github.com/shivansh-yadav13/sqlite-web/db"
@@ -12,11 +12,11 @@ import (
 
 func main() {
 	app := configs.SetupApp()
-	dbName := os.Getenv("SQLITE_NAME")
+	dbName := strings.TrimSpace(os.Getenv("SQLITE_NAME"))
 	if dbName == "" {
-		dbName = "data"
+		dbName = "data.db"
 	}
-	db.ConnectDB(fmt.Sprintf("./sqlite_database/%s.db", dbName))
+	db.ConnectDB(dbName)
 	routes.SetRoutes(app)
 	log.Fatal(app.Listen(":3000"))
 }
