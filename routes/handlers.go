@@ -21,6 +21,18 @@ func Index(c *fiber.Ctx) error {
 	})
 }
 
+// Setting will render the setting html template.
+func Setting(c *fiber.Ctx) error {
+	tables, err := db.GetTables()
+	if err != nil {
+		panic(err)
+	}
+	return c.Render("setting", fiber.Map{
+		"Title":  "Settings - SQLite UI",
+		"tables": tables,
+	})
+}
+
 // Table will render the table_view html template.
 func Table(c *fiber.Ctx) error {
 	query, err := db.GetSQLQuery(c.Params("table"))
