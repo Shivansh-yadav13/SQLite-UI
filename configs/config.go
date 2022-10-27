@@ -10,7 +10,7 @@ SetupApp create a new fiber app
 setting up the HTML templates and static files.
 */
 func SetupApp() *fiber.App {
-	engine := html.New("./templates", ".html")
+	engine := html.New("./views", ".html")
 	app := fiber.New(fiber.Config{
 		Views: engine,
 	})
