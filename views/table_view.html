@@ -9,7 +9,7 @@
                 <div class="font-semibold text-gray-800 pb-3">&#43; Add Column</div>
                 <div class="flex justify-between items-center space-x-1">
                 
-                    <input type="text" class="bg-gray-100 rounded p-2 border focus:outline-none focus:border-blue-600" id="table_name" name="table_name" placeholder="Table Name">
+                    <input type="hidden" value="{{.table_name}}" class="bg-gray-100 rounded p-2 border focus:outline-none focus:border-blue-600" id="table_name" name="table_name" placeholder="Table Name">
                     <input type="text" class="bg-gray-100 rounded p-2 border focus:outline-none focus:border-blue-600" id="column_name" name="column_name" placeholder="Column Name">
 
                     <select name="column_type" class="rounded p-2 border focus:outline-none focus:border-blue-600">
