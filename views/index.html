@@ -1,0 +1,82 @@
+{{template "partials/header" .}}
+
+    <div class="ml-[300px] mt-3 flex flex-col justify-top h-full">
+        <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mb-3">
+            <header class="p-4 border-b border-gray-100">
+                <div class="font-semibold text-gray-800">Create Table</div>
+            </header>
+            <form action="/create-table" method="post" class="flex justify-between items-center p-3 space-x-1">
+                <input type="text" class="w-full bg-gray-100 rounded p-2 border focus:outline-none focus:border-blue-600" id="table_name" name="table_name" placeholder="Table Name">
+
+                <div class="flex justify-center items-center space-x-2">
+                    <button type="submit" class="btn bg-blue-600 text-white px-3 py-2 font-medium rounded"
+                        >
+                        Create
+                    </Create>
+                </div>
+            </form>
+        </div>
+        <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+            <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+                <header class="p-4 border-b border-gray-100">
+                    <div class="font-semibold text-gray-800">Tables</div>
+                </header>
+
+                <div class="overflow-x-auto">
+                    <table class="table-auto w-full">
+                        <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                            <tr>
+                                <th class="py-2 px-4">
+                                    <div class="font-semibold text-left">Name</div>
+                                </th>
+                                <th class="py-2 px-4">
+                                    <div class="font-semibold text-left">View/Edit</div>
+                                </th>
+                                <th class="py-2 px-4">
+                                    <div class="font-semibold text-center">Drop Table</div>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="bg-white text-sm divide-y divide-gray-100 bg-white text-sm divide-y divide-gray-100">
+                            {{range .tables}}
+                            <tr>
+                                <td class="py-2 px-4">
+                                    <div class="font-medium text-gray-800">
+                                        {{.}}
+                                    </div>
+                                </td>
+                                <td class="py-2 px-4">
+                                    <div class="font-medium text-gray-800 mb-2 text-left">
+                                        <a href="/{{.}}/data" class="hover:text-blue-600 rounded">View Data</a>
+                                    </div>
+                                    <div class="font-medium text-gray-800">
+                                        <a href="/{{.}}/schema" class="hover:text-blue-600 rounded">Edit Schema</a>
+                                    </div>
+                                </td>
+                                <td class="py-2 px-4">
+                                    <div class="flex justify-center">
+                                        
+                                        <form action="/drop-table" method="post">
+                                            <input hidden type="text" id="tname" name="table_name" value={{.}}>
+                                            <div class="table-btns">
+                                                <button type="submit" class="table-btn">
+                                                    <svg class="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            {{end}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{template "partials/footer" .}}

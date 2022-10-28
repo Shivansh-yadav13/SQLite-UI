@@ -1,0 +1,35 @@
+{{template "partials/header" .}}
+    <div class="ml-[300px] mt-3 flex flex-col justify-top h-full">
+        <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mb-3">
+            <header class="p-4 border-b border-gray-100">
+                <div class="font-semibold text-gray-800">Edit Schema - {{.table_name}} Table</div>
+                <div class="font-normal text-gray-400 text-sm">{{.sql_query}}</div>
+            </header>
+            <form action="/add-column" method="post" class="p-3">
+                <div class="font-semibold text-gray-800 pb-3">&#43; Add Column</div>
+                <div class="flex justify-between items-center space-x-1">
+                
+                    <input type="hidden" value="{{.table_name}}" class="bg-gray-100 rounded p-2 border focus:outline-none focus:border-blue-600" id="table_name" name="table_name" placeholder="Table Name">
+                    <input type="text" class="bg-gray-100 rounded p-2 border focus:outline-none focus:border-blue-600" id="column_name" name="column_name" placeholder="Column Name">
+
+                    <select name="column_type" class="rounded p-2 border focus:outline-none focus:border-blue-600">
+                        <option value="" selected disabled>Please Select</option>
+                        <option value="CHARACTER(20)">CHARACTER(20)</option>
+                        <option value="VARCHAR(255)">VARCHAR(255)</option>
+                        <option value="INTEGER">INTEGER</option>
+                        <option value="FLOAT">FLOAT</option>
+                        <option value="BOOLEAN">BOOLEAN</option>
+                    </select>
+
+                    <div class="flex justify-center items-center space-x-2">
+                        <button type="submit" class="btn bg-blue-600 text-white px-3 py-2 font-medium rounded"
+                            >
+                            Create
+                        </Create>
+                    </div>
+                </button>
+            </form>
+        </div>
+    </div>
+
+{{template "partials/footer" .}}
