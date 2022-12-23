@@ -28,19 +28,14 @@
       </div>
       <div
         class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-        onclick="dropdown()"
       >
         <i class="bi bi-chat-left-text-fill"></i>
         <div class="flex justify-between w-full items-center">
           <span class="text-[15px] ml-4 text-gray-200 font-bold">Tables</span>
-          <span class="text-sm rotate-180" id="arrow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </span>
         </div>
       </div>
       <div
         class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold"
-        id="submenu"
       >
         {{range .tables}}
         <a href="/{{.}}/data" class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
